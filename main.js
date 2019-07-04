@@ -2,6 +2,8 @@ const electron = require('electron');
 const app = electron.app;
 const url = require('url');
 const path = require('path');
+//Module to AutoReload on Save
+const electronReload = require('electron-reload');
 
 let mainWindow;
 
@@ -24,6 +26,12 @@ function createWindow()
         mainWindow = null;
     });
 }
+
+//Enables Live Reload
+electronReload(__dirname, {
+    electron: path.join(__dirname, 'node_modules', '.bin', 'electron' )
+});
+
 
 app.on('ready', createWindow);
 
